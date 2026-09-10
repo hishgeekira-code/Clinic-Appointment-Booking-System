@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Нэвтрэх</title>
+</head>
+<body>
+    <h2>Нэвтрэх</h2>
+    <div th:if="${param.error}" style="color:red">Email эсвэл нууц үг буруу байна!</div>
+    <div th:if="${param.logout}" style="color:green">Системээс амжилттай гарлаа.</div>
+    <div th:if="${param.success}" style="color:green">Амжилттай бүртгэгдлээ. Одоо нэвтэрнэ үү.</div>
+
+    <form th:action="@{/login}" method="post">
+        <div>
+            <label>Email:</label>
+            <input type="email" name="username" required/>
+        </div>
+        <div>
+            <label>Нууц үг:</label>
+            <input type="password" name="password" required/>
+        </div>
+        <button type="submit">Нэвтрэх</button>
+    </form>
+    <p>Бүртгэлгүй юу? <a th:href="@{/register}">Бүртгүүлэх</a></p>
+</body>
+</html>
