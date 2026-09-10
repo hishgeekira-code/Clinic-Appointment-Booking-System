@@ -9,6 +9,12 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfig {
+	
+	private final CustomAuthenticationSuccessHandler successHandler;
+	
+	public SecurityConfig(CustomAuthenticationSuccessHandler successHandler) {
+		this.successHandler = successHandler;
+	}
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -19,13 +25,18 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/register", "/login", "/css/**", "/js/**").permitAll()
+                .requestMatchers("/", "/register", "/login", "/access-denied", "/css/**", "/js/**", "/images/**").permitAll()
+                .requestMatchers("/admin/**", "/api/admin/**").hasRole("ADMIN")
+                .requestMatchers("/customer/**").hasRole("CUSTOMER")
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
                 .loginPage("/login")
-                .defaultSuccessUrl("/", true)
+                .successHandler(successHandler)
                 .permitAll()
+            )
+            .exceptionHandling(exception -> exception
+            		.accessDeniedPage("/access-denied")
             )
             .logout(logout -> logout
                 .logoutUrl("/logout")
