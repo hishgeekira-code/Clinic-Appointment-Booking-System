@@ -7,5 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import mn.icode.entity.Doctor;
 
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
+	
+	List<Doctor> findByActiveTrue();
+	
 	List<Doctor> findByDepartmentId(Long departmentId);
 }
