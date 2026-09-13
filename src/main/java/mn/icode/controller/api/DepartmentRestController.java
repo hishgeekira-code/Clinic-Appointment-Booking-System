@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import mn.icode.entity.Department;
-import mn.icode.security.DepartmentService;
+import mn.icode.service.DepartmentService;
 
 @RestController
 @RequestMapping("/api/admin/departments")

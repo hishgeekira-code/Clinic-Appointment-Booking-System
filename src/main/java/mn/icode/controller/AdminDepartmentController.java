@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import mn.icode.entity.Department;
-import mn.icode.security.DepartmentService;
+import mn.icode.service.DepartmentService;
 
 @Controller
 @RequestMapping("/admin/departments")

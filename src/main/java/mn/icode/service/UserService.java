@@ -22,7 +22,7 @@ public class UserService {
 
     public void registerUser(RegisterDto dto) {
         if (userRepository.existsByEmail(dto.getEmail())) {
-            throw new RuntimeException("Email аль хэдийн бүртгэгдсэн байна!");
+            throw new RuntimeException("Email already exists!");
         }
 
         User user = new User();
