@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Schedule Management</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .form-group { margin-bottom: 12px; }
+    </style>
+</head>
+<body>
+    <h2>Doctor Schedule Management</h2>
+    <a href="/admin">← Back to Admin Dashboard</a>
+    <hr>
+
+    <h3>Add New Schedule</h3>
+    <form th:action="@{/admin/schedules/add}" th:object="${schedule}" method="post">
+        <div class="form-group">
+            <label>Select Doctor:</label><br>
+            <select th:field="*{doctor.id}" required>
+                <option value="">-- Select Doctor --</option>
+                <option th:each="doc : ${doctors}" 
+                        th:value="${doc.id}" 
+                        th:text="${doc.firstName + ' ' + doc.lastName}">Doctor</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Appointment Date:</label><br>
+            <input type="date" th:field="*{appointmentDate}" required />
+        </div>
+        <div class="form-group">
+            <label>Start Time:</label><br>
+            <input type="time" th:field="*{startTime}" required />
+        </div>
+        <div class="form-group">
+            <label>End Time:</label><br>
+            <input type="time" th:field="*{endTime}" required />
+        </div>
+        <div class="form-group">
+            <label>
+                <input type="checkbox" th:field="*{available}" th:checked="true" /> Available
+            </label>
+        </div>
+        <button type="submit">Save Schedule</button>
+    </form>
+
+    <h3>Existing Schedules</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Doctor</th>
+                <th>Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Available</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="sch : ${schedules}">
+                <td th:text="${sch.id}">1</td>
+                <td th:text="${sch.doctor != null ? sch.doctor.firstName + ' ' + sch.doctor.lastName : 'N/A'}">Doctor Name</td>
+                <td th:text="${sch.appointmentDate}">2026-09-15</td>
+                <td th:text="${sch.startTime}">09:00</td>
+                <td th:text="${sch.endTime}">10:00</td>
+                <td th:text="${sch.available ? 'Yes' : 'No'}">Yes</td>
+                <td>
+                    <a th:href="@{/admin/schedules/delete/{id}(id=${sch.id})}" onclick="return confirm('Delete this schedule?')">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
