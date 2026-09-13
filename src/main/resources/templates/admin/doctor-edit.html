@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Doctor</title>
+</head>
+<body>
+    <h2>Edit Doctor</h2>
+    
+    <form th:action="@{/admin/doctors/update/{id}(id=${doctor.id})}" th:object="${doctor}" method="post">
+        <div>
+            <label>First Name:</label><br>
+            <input type="text" th:field="*{firstName}" required />
+        </div>
+        <div>
+            <label>Last Name:</label><br>
+            <input type="text" th:field="*{lastName}" />
+        </div>
+        <div>
+            <label>Specialization:</label><br>
+            <input type="text" th:field="*{specialization}" />
+        </div>
+        <div>
+            <label>Bio:</label><br>
+            <textarea th:field="*{bio}"></textarea>
+        </div>
+        <div>
+            <label>
+                <input type="checkbox" th:field="*{active}" /> Active Status
+            </label>
+        </div>
+        <div>
+            <label>Department:</label><br>
+            <select th:field="*{department.id}" required>
+                <option th:each="dept : ${departments}" 
+                        th:value="${dept.id}" 
+                        th:text="${dept.name}"
+                        th:selected="${doctor.department != null and dept.id == doctor.department.id}">
+                </option>
+            </select>
+        </div>
+        <br>
+        <button type="submit">Update Doctor</button>
+        <a href="/admin/doctors">Cancel</a>
+    </form>
+</body>
+</html>
