@@ -8,7 +8,7 @@
         table { border-collapse: collapse; width: 100%; margin-top: 20px; }
         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
         th { background-color: #f2f2f2; }
-        .form-group { margin-bottom: 10px; }
+        .form-group { margin-bottom: 12px; }
     </style>
 </head>
 <body>
@@ -51,7 +51,7 @@
         <button type="submit">Save Doctor</button>
     </form>
 
-    <h3>Existing Doctors</h3>
+    <h3>Doctor List</h3>
     <table>
         <thead>
             <tr>
@@ -68,12 +68,12 @@
         <tbody>
             <tr th:each="doc : ${doctors}">
                 <td th:text="${doc.id}">1</td>
-                <td th:text="${doc.firstName}">Бат</td>
-                <td th:text="${doc.lastName}">Дорж</td>
-                <td th:text="${doc.specialization}">Cardiologist</td>
-                <td th:text="${doc.bio}">Bio info</td>
+                <td th:text="${doc.firstName}">First Name</td>
+                <td th:text="${doc.lastName}">Last Name</td>
+                <td th:text="${doc.specialization}">Specialization</td>
+                <td th:text="${doc.bio}">Bio</td>
                 <td th:text="${doc.active ? 'Active' : 'Inactive'}">Active</td>
-                <td th:text="${doc.department != null ? doc.department.name : 'N/A'}">Cardiology</td>
+                <td th:text="${doc.department != null ? doc.department.name : 'N/A'}">Department</td>
                 <td>
                     <a th:href="@{/admin/doctors/edit/{id}(id=${doc.id})}">Edit</a> | 
                     <a th:href="@{/admin/doctors/delete/{id}(id=${doc.id})}" onclick="return confirm('Are you sure?')">Delete</a>
