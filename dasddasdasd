@@ -1,0 +1,12 @@
+  1-initialize-project-and-postgresql[m
+  10-create-appointment-entity[m
+* [32m11-implement-appointment-booking-service[m
+  2-create-user-authentication[m
+  3-configure-customer-and-admin-roles[m
+  4-create-department-crud[m
+  5-create-doctor-model-and-repository[m
+  6-implement-doctor-servicecontroller[m
+  7-create-doctor-ssr-pages[m
+  8-create-schedule-entity[m
+  9-create-schedule-admin-crud[m
+  main[m

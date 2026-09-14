@@ -34,15 +34,13 @@ public class Appointment {
 	
 	public Appointment() {}
 
-	public Appointment(Long id, User user, Doctor doctor, Schedule schedule, String reason, String status,
-			LocalDateTime createdAt) {
-		this.id = id;
+	public Appointment(User user, Doctor doctor, Schedule schedule, String reason, String status) {
 		this.user = user;
 		this.doctor = doctor;
 		this.schedule = schedule;
 		this.reason = reason;
 		this.status = status;
-		this.createdAt = createdAt;
+		this.createdAt = LocalDateTime.now();
 	}
 
 	public Long getId() {
