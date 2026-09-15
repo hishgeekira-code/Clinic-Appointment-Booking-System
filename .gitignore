@@ -14,7 +14,7 @@ target/
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
+.idea/
 *.iws
 *.iml
 *.ipr
@@ -39,3 +39,4 @@ application-local.yml
 application-dev.yml
 .env
 *.env
+.DS_Store
